@@ -25,3 +25,15 @@ button {
     height: 55px;
     width: 130px;
 }
+
+#attempts {
+    padding: 20px;
+    border-radius: 5px;
+    height: 140px;
+}
+
+#result {
+    height: 140px;
+    padding: 20px;
+    border-radius: 5px;
+}

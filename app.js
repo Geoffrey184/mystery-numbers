@@ -1,7 +1,7 @@
 // Générer un chiffre aléatoire entre 1 et 10
 let randomNumber = Math.floor(Math.random() * 10) + 1;
 // Initialiser le nombre d'essais restants à 3
-let remainingAttempts = 4;
+let remainingAttempts = 3;
 
 // Fonction pour comparer le chiffre deviné avec le chiffre aléatoire
 function guessNumber() {
@@ -46,5 +46,45 @@ function restartGame() {
     document.getElementById("guessInput").disabled = false;
     document.getElementsByTagName("button")[0].disabled = false;
 
-    // Effacer la zone de texte
+}
+
+let commentList = [];
+
+function addComment() {
+    let commentInput = document.getElementById("commentInput").value;
+    commentList.push(commentInput);
+    document.getElementById("commentInput").value = "";
+    displayComments();
+}
+
+function displayComments() {
+    let commentListElement = document.getElementById("commentList");
+    commentListElement.innerHTML = "";
+
+    for (let i = 0; i < commentList.length; i++) {
+        let commentElement = document.createElement("li");
+        commentElement.innerHTML = commentList[i];
+        commentListElement.appendChild(commentElement);
+    }
+}
+
+  // Comparer le chiffre deviné avec le chiffre aléatoire
+  if (guess === randomNumber) {
+    document.getElementById("result").innerHTML = "Félicitations ! Vous avez deviné le chiffre !";
+} else if (guess < randomNumber) {
+    document.getElementById("result").innerHTML = "Le chiffre est plus grand que " + guess + ".";
+} else {
+    document.getElementById("result").innerHTML = "Le chiffre est plus petit que " + guess + ".";
+}
+
+// Décrémenter le nombre d'essais restants et afficher le nombre d'essais restants
+remainingAttempts--;
+attemptsElement.innerHTML = "Nombre d'essais restants : " + remainingAttempts;
+
+// Vérifier si l'utilisateur n'a plus d'essais restants
+if (remainingAttempts === 0) {
+    document.getElementById("result").innerHTML = "Désolé, vous avez épuisé tous vos essais. Le chiffre était " + randomNumber + ".";
+    // Désactiver la zone de texte et le bouton pour empêcher d'autres devinettes
+    document.getElementById("guessInput").disabled = true;
+    document.getElementsByTagName("button")[0].disabled = true;
 }
